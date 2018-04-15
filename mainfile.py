@@ -18,6 +18,9 @@ from keras.models import Model
 from keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Input
 from keras.utils import to_categorical
 
+from util import *
+from model import *
+
 def feature_extraction(wav_fd, fe_fd):
     names = [na for na in os.listdir(wav_fd) if na.endswith('.wav')]
     names = sorted(names)
@@ -139,31 +142,8 @@ def test(md):
     acc=(float(pos)/float(len(pred)))*100
     return acc
 
-
-#Tell your wavs folder
-wav_dev_fd="D:/workspace/aditya_akshita/datax/dcase/audios/development"
-wav_eva_fd="D:/workspace/aditya_akshita/datax/dcase/audios/evaluation"
-dev_fd="D:/workspace/aditya_akshita/datax/dcase/features/development"
-eva_fd="D:/workspace/aditya_akshita/datax/dcase/features/evaluation"
-label_csv="D:/workspace/aditya_akshita/datax/dcase/texts/development/meta.txt"
-txt_eva_path='D:/workspace/aditya_akshita/datax/dcase/texts/evaluation/test.txt'
-new_p='D:/workspace/aditya_akshita/datax/dcase/texts/evaluation/evaluate.txt'
-labels = ['bus', 'cafe/restaurant', 'car', 'city_center', 'forest_path', 
-           'grocery_store', 'home', 'beach', 'library', 'metro_station', 
-           'office', 'residential_area', 'train', 'tram', 'park']
-            
-lb_to_id = {lb:id for id, lb in enumerate(labels)}
-id_to_lb = {id:lb for id, lb in enumerate(labels)}
-
-fsx = 44100.
-n_fft = 1024.
-agg_num=10
-hop=10
-num_classes=len(labels)
-extract=False
-if extract:
-    feature_extraction(wav_dev_fd,dev_fd)
-    feature_extraction(wav_eva_fd,eva_fd)
+#feature_extraction(wav_dev_fd,dev_fd)
+#feature_extraction(wav_eva_fd,eva_fd)
 
 
 train_x,train_y=train_data()
@@ -172,36 +152,12 @@ train_x,train_y=train_data()
 train_x=train_x.reshape((batch_num,1,n_time,n_freq))
     
 train_y=to_categorical(train_y, num_classes=num_classes)
-input_neurons=200
-act1='relu'
-act2='relu'
-act3='softmax'
-epochs=100
-batchsize=100
 dimx = n_time
 dimy = n_freq
-nb_filter = 100
-filter_length =3
-pool_size=(2,2)
 
-
-inpx = Input(shape=(1,dimx,dimy),name='inpx')
-    
-x = Conv2D(filters=nb_filter,
-           kernel_size=filter_length,
-           data_format='channels_first',
-           padding='same',
-           activation=act1)(inpx)
-
-hx = MaxPooling2D(pool_size=pool_size)(x)
-h = Flatten()(hx)
-wrap = Dense(input_neurons, activation=act2,name='wrap')(h)
-score = Dense(num_classes,activation=act3,name='score')(wrap)
-
-model = Model([inpx],score)
-model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 
 model.fit(train_x,train_y,batch_size=batchsize,epochs=epochs,verbose=1)
+
 
 acc2=test(model)
 print "Accuracy %.2f prcnt"%acc2
