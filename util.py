@@ -2,17 +2,17 @@
 """
 ** deeplean-ai.com **
 ** dl-lab **
-created by :: akshita
+created by :: akshitac8
 """
 
 #Tell your wavs folder
-wav_dev_fd="D:/workspace/aditya_akshita/datax/dcase/audios/development"
-wav_eva_fd="D:/workspace/aditya_akshita/datax/dcase/audios/evaluation"
-dev_fd="D:/workspace/aditya_akshita/datax/dcase/features/development"
-eva_fd="D:/workspace/aditya_akshita/datax/dcase/features/evaluation"
-label_csv="D:/workspace/aditya_akshita/datax/dcase/texts/development/meta.txt"
-txt_eva_path='D:/workspace/aditya_akshita/datax/dcase/texts/evaluation/test.txt'
-new_p='D:/workspace/aditya_akshita/datax/dcase/texts/evaluation/evaluate.txt'
+wav_dev_fd = "D:/workspace/aditya_akshita/datax/dcase/audios/development"
+wav_eva_fd = "D:/workspace/aditya_akshita/datax/dcase/audios/evaluation"
+dev_fd = "D:/workspace/aditya_akshita/datax/dcase/features/development"
+eva_fd = "D:/workspace/aditya_akshita/datax/dcase/features/evaluation"
+label_csv = "D:/workspace/aditya_akshita/datax/dcase/texts/development/meta.txt"
+txt_eva_path = 'D:/workspace/aditya_akshita/datax/dcase/texts/evaluation/test.txt'
+new_p = 'D:/workspace/aditya_akshita/datax/dcase/texts/evaluation/evaluate.txt'
 labels = ['bus', 'cafe/restaurant', 'car', 'city_center', 'forest_path', 
            'grocery_store', 'home', 'beach', 'library', 'metro_station', 
            'office', 'residential_area', 'train', 'tram', 'park']

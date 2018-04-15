@@ -4,10 +4,12 @@
 ** dl-lab **
 created by :: adityac8
 """
+
 from keras.models import Model
 from keras.layers import Dense, Conv2D, MaxPooling2D, Flatten, Input
 from keras.utils import to_categorical
 from util import *
+
 inpx = Input(shape=(1,10,64),name='inpx')
     
 x = Conv2D(filters=nb_filter,
