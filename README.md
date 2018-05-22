@@ -1,5 +1,9 @@
 # audio_DCASE
 
+Paper Implementation for :
+
+[1] Deep Neural Network Baseline For Dcase Challenge 2016 [[Paper](http://www.cs.tut.fi/sgn/arg/dcase2016/documents/challenge_technical_reports/DCASE2016_Kong_3008.pdf)]
+
 This code runs on the DCASE 2016 Audio Dataset.
 
 ## You need to define:
